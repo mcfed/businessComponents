@@ -1,6 +1,6 @@
 {
   "name": "@mcfed/businessComponents",
-  "version": "0.6.2",
+  "version": "0.1.0",
   "description": "@mcfed for businessComponents",
   "main": "lib/index.js",
   "module": "es/index.js",
