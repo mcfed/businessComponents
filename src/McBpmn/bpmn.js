@@ -5,7 +5,7 @@ import BpmnViewer from 'bpmn-js/lib/Viewer';
 
 import {defaultXml} from './BpmnEditor/sources/xml';
 
-class ProcessDesign extends PureComponent {
+class Bpmn extends PureComponent {
   state = {
     scale: 1, // 流程图比例
     svgVisible: false, // 预览图片
@@ -260,4 +260,4 @@ class ProcessDesign extends PureComponent {
   }
 }
 
-export default ProcessDesign;
+export default Bpmn;
