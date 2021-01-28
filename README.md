@@ -1,4 +1,3 @@
-
 ## useage
 
 当前版本已发布 npm 仓库
@@ -26,10 +25,13 @@
 ### 组件规范
 
 - 新增组件源码位于`src`目录下，组件采用`大驼峰（UpperCamel）`命名，以组件名作为目录名，如`./src/FormItem/`。
+- 新增组件目录必须包含 style 用于样式分包。
+- 单元测试目录 **tests**, storybook 目录 **stories**, 如有需要符合目录规范
 - 组件目录下必须具有`index`入口文件，入口文件必须具有`default`导出
-- 组建目录下必须具有style文件夹 若有需要添加样式 则在style/index.js/ts 中引入
+- 组建目录下必须具有 style 文件夹 若有需要添加样式 则在 style/index.js/ts 中引入
 - 当一个组件目录下存在多个待导出组件时，采用`ComponentA.ComponentB`的形式导出非默认组件
-- 组件样式可使用下面的样式分包使用或直接引入dist/style.css 或 dist/style.less 中的全部样式（同antd样式用法）
+- 组件样式可使用下面的样式分包使用或直接引入 dist/style.css 或 dist/style.less 中的全部样式（同 antd 样式用法）
+
 ### 使用说明
 
 请移步至[这里](./docs/usage/basic.md)
