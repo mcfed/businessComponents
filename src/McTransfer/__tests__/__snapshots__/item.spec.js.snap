@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`快照测试 全页快照 1`] = `
+<li
+  className="-content-item"
+  onClick={[Function]}
+  style={Object {}}
+  title=""
+>
+  <Checkbox
+    checked={true}
+    disabled={false}
+    indeterminate={false}
+  />
+  <span />
+</li>
+`;

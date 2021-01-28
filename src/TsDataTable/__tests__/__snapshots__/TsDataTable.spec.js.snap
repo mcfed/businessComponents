@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`快照测试 datatable  1`] = `
+<Table
+  bordered={false}
+  className=""
+  columns={Array []}
+  dataSource={Array []}
+  indentSize={20}
+  loading={false}
+  locale={Object {}}
+  pagination={
+    Object {
+      "pageSizeOptions": Array [
+        "10",
+        "20",
+        "50",
+        "100",
+      ],
+      "showSizeChanger": true,
+      "showTotal": [Function],
+      "size": "middle",
+    }
+  }
+  prefixCls="ant-table"
+  rowKey="key"
+  showConfig={false}
+  showHeader={true}
+  size="default"
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+  useFixedHeader={false}
+/>
+`;

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`快照测试 全页快照 1`] = `
+<div
+  className=""
+>
+  <Button
+    block={false}
+    disabled={false}
+    ghost={false}
+    htmlType="button"
+    loading={false}
+    onClick={[MockFunction]}
+    size="small"
+    type="primary"
+  >
+    <span>
+      <Icon
+        type="right"
+      />
+    </span>
+  </Button>
+  <Button
+    block={false}
+    disabled={false}
+    ghost={false}
+    htmlType="button"
+    loading={false}
+    onClick={[MockFunction]}
+    size="small"
+    type="primary"
+  >
+    <span>
+      <Icon
+        type="left"
+      />
+    </span>
+  </Button>
+</div>
+`;

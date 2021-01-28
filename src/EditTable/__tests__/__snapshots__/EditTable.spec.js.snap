@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`快照测试 Editable全页快照 1`] = `
+<withStore(Table)
+  bordered={true}
+  columns={
+    Array [
+      Object {
+        "dataIndex": "name",
+        "key": "name",
+        "title": "姓名",
+      },
+      Object {
+        "dataIndex": "age",
+        "key": "age",
+        "title": "年龄",
+      },
+      Object {
+        "dataIndex": "address",
+        "key": "address",
+        "title": "住址",
+      },
+    ]
+  }
+  components={
+    Object {
+      "body": Object {
+        "row": [Function],
+      },
+    }
+  }
+  dataSource={
+    Array [
+      Object {
+        "address": "西湖区湖底公园1号",
+        "age": 32,
+        "key": "1",
+        "name": "胡彦斌",
+      },
+      Object {
+        "address": "西湖区湖底公园1号",
+        "age": 42,
+        "key": "2",
+        "name": "胡彦祖",
+      },
+    ]
+  }
+  footer={[Function]}
+  rowClassName={[Function]}
+/>
+`;

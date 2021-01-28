@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "target": "es5",
+    "lib": ["es5", "dom", "es6", "esnext"],
+    "allowJs": true,
+    "esModuleInterop": true,
+    "declaration": true,
+    "strict": true,
+    "noEmit": true,
+    "jsx": "react",
+    "plugins": [
+      {
+        "transform": "ts-import-plugin",
+        "type": "config",
+        "libraryName": "antd",
+        "style": true
+      }
+    ]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "**/*.spec.js", "**/*.test.js", "**/*.stories.js"]
+}

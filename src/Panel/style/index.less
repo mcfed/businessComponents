@@ -1,0 +1,52 @@
+.ant-panel-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  background-color: #fff;
+  > .ant-spin-nested-loading {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    > .ant-spin-container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+  }
+  .ant-panel {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    .ant-panel-head {
+      display: flex;
+      padding: 16px 24px;
+      color: rgba(0, 0, 0, 0.65);
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      border-radius: 4px 4px 0 0;
+      .ant-panel-head-title {
+        margin: 0;
+        color: rgba(0, 0, 0, 0.85);
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 22px;
+      }
+    }
+    .ant-panel-body {
+      display: flex;
+      flex: 1;
+      overflow: auto;
+      flex-direction: column;
+      padding: 10px 16px;
+    }
+    .ant-panel-footer {
+      padding: 10px 16px;
+      text-align: center;
+      border-top: 1px solid #e8e8e8;
+      border-radius: 0 0 4px 4px;
+      button {
+        margin: 0 4px;
+      }
+    }
+  }
+}

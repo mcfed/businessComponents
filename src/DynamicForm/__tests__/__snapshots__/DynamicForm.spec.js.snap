@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`快照测试 全页快照 1`] = `
+<Form(BaseForm)>
+  <FormItemRender
+    key="input1"
+    name="input1"
+  >
+    <Input
+      defaultValue="input1"
+      formItemLayout={
+        Object {
+          "labelCol": Object {
+            "span": 4,
+          },
+          "wrapperCol": Object {
+            "span": 8,
+          },
+        }
+      }
+      label="input1"
+      name="input1"
+      rules={
+        Array [
+          Object {
+            "message": "必填input1",
+            "required": true,
+          },
+        ]
+      }
+      type="text"
+    />
+  </FormItemRender>
+</Form(BaseForm)>
+`;

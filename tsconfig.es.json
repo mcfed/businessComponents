@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./es",
+    "module": "ES6",
+    "noEmit": false,
+    "plugins": [
+      {
+        "transform": "ts-import-plugin",
+        "type": "config",
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": true
+      }
+    ]
+  }
+}

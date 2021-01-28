@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Permission component 1`] = `
+<span
+  key=".0"
+>
+  has
+</span>
+`;
+
+exports[`Permission component is empty 1`] = `""`;

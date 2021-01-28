@@ -1,0 +1,39 @@
+.treeTile .ant-tree-child-tree-open li {
+  float: left !important;
+}
+
+.treeTile .ant-tree-treenode-switcher-open {
+  display: block !important;
+}
+
+.treeTile .ant-tree-child-tree-open {
+  display: block !important;
+  position: relative !important;
+  top: -32px !important;
+  left: 200px !important;
+  width: calc(100% - 200px);
+  overflow: hidden;
+}
+
+.treeTile .ant-tree-child-tree > li:first-child {
+  padding-top: 4px !important;
+}
+
+.treeTile .ant-tree-switcher {
+  visibility: hidden !important;
+}
+
+.treeTile .ant-tree-treenode-switcher-open::before {
+  display: block;
+  clear: both;
+  height: 0;
+  content: '';
+  visibility: hidden;
+  overflow: hidden;
+}
+
+.treeNoData {
+  text-align: center;
+  color: #cccccc;
+  margin-bottom: 0px;
+}

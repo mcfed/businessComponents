@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`快照测试 DataTable 快照测试 1`] = `
+<withStore(Table)
+  columns={Array []}
+  pagination={
+    Object {
+      "pageSizeOptions": Array [
+        "10",
+        "20",
+        "50",
+        "100",
+      ],
+      "showSizeChanger": true,
+      "showTotal": [Function],
+      "size": "middle",
+    }
+  }
+  prefixCls="ant-table"
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
+/>
+`;

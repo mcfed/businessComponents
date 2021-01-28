@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`快照测试 全页快照 1`] = `
+<Group
+  className="ExtraColumn"
+>
+  <Row
+    gutter={0}
+  >
+    <Col
+      span={10}
+    >
+      <FormItem
+        hasFeedback={false}
+      />
+    </Col>
+    <Col
+      span={2}
+    />
+    <Col
+      span={10}
+    >
+      <FormItem
+        hasFeedback={false}
+      />
+    </Col>
+  </Row>
+</Group>
+`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`快照测试 ExpandList 快照测试 1`] = `
+<List
+  bordered={false}
+  className="demo-loadmore-list"
+  dataSource={Array []}
+  header=""
+  itemLayout="horizontal"
+  loadMore={null}
+  loading={false}
+  pagination={false}
+  renderItem={[Function]}
+  size="large"
+  split={true}
+/>
+`;

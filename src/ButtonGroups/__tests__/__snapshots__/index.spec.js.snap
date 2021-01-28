@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ts-button-group test  button groups base test mode ButtonMenu 1`] = `
+<div
+  class="button-groups"
+>
+  <div
+    class="ant-btn-group"
+  >
+    <button
+      class="ant-btn"
+      type="button"
+    >
+      <span>
+        aaa
+      </span>
+    </button>
+    <button
+      class="ant-btn"
+      type="button"
+    >
+      <span>
+        bbb
+      </span>
+    </button>
+    <button
+      class="ant-btn"
+      type="button"
+    >
+      <span>
+        ccc
+      </span>
+    </button>
+    <button
+      class="ant-btn"
+      type="button"
+    >
+      <span>
+        ccc
+      </span>
+    </button>
+    <button
+      class="ant-btn ant-dropdown-trigger"
+      type="button"
+    >
+      <i
+        aria-label="icon: ellipsis"
+        class="anticon anticon-ellipsis"
+      >
+        <svg
+          aria-hidden="true"
+          class=""
+          data-icon="ellipsis"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M176 511a56 56 0 1 0 112 0 56 56 0 1 0-112 0zm280 0a56 56 0 1 0 112 0 56 56 0 1 0-112 0zm280 0a56 56 0 1 0 112 0 56 56 0 1 0-112 0z"
+          />
+        </svg>
+      </i>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`ts-button-group test  button groups base test mode buttngroups 1`] = `
+<div
+  class="button-groups"
+>
+  <div
+    class="ant-btn-group"
+  >
+    <button
+      class="ant-btn"
+      type="button"
+    >
+      <span>
+        aaa
+      </span>
+    </button>
+    <button
+      class="ant-btn"
+      type="button"
+    >
+      <span>
+        bbb
+      </span>
+    </button>
+    <button
+      class="ant-btn"
+      type="button"
+    >
+      <span>
+        ccc
+      </span>
+    </button>
+  </div>
+</div>
+`;

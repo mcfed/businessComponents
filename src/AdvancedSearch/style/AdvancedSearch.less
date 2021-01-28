@@ -1,0 +1,58 @@
+.advanced-search-panel {
+  position: relative;
+  flex-shrink: 0;
+  padding-right: 170px;
+  position: relative;
+  .ant-col-8 {
+    .ant-form-item {
+      margin-bottom: 0;
+    }
+  }
+  .ant-form-item-label {
+    line-height: 32px;
+  }
+  .ant-input-group .ant-form-item .ant-form-item-control-wrapper .ant-select {
+    .ant-select-selection {
+      margin-right: -1px;
+      height: 32px;
+      border-radius: 4px 0 0 4px;
+    }
+  }
+  .advanced-search-toolbar {
+    position: absolute;
+    right: 0;
+    top: 4px;
+    .ant-btn {
+      margin: 0 5px;
+    }
+    .ant-btn-ghost {
+      border-width: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+    .anticon-down {
+      cursor: pointer;
+    }
+  }
+  .ant-btn-circle {
+    border-width: 0;
+  }
+
+  .ant-select-selection--multiple {
+    .ant-select-selection__rendered {
+      overflow: hidden;
+      height: 30px;
+      ul {
+        position: absolute;
+        left: 0;
+        right: 0;
+        white-space: nowrap;
+        li {
+          float: none;
+          margin-top: 8px;
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
