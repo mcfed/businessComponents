@@ -1,6 +1,5 @@
 import React, {PureComponent} from 'react';
 import {notification} from 'antd';
-
 import BpmnModeler from './BpmnEditor/Modeler';
 import BpmnViewer from 'bpmn-js/lib/Viewer';
 
@@ -67,7 +66,8 @@ class ProcessDesign extends PureComponent {
       });
       const $propertiesContainer = document.querySelector('#properties-panel');
       // 外部初始化属性面板
-      this.props.initPanel(this.bpmnModeler, $propertiesContainer);
+      this.props.initPanel &&
+        this.props.initPanel(this.bpmnModeler, $propertiesContainer);
     }
     this.renderDiagram(xmlData);
 
