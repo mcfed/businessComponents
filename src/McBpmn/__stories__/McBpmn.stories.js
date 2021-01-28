@@ -15,7 +15,16 @@ stories.add('基础使用', () => {
     state = {
       readonly: false,
       xmlData: null,
-      bpmnData: bpmnData
+      bpmnData: [
+        {
+          id: 'Activity_0irvtx6',
+          runState: 1
+        },
+        {
+          id: 'Activity_1hqlmun',
+          runState: 2
+        }
+      ]
     };
 
     componentDidMount() {}
