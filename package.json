@@ -96,10 +96,11 @@
     "typescript": "^3.7.5"
   },
   "optionalDependencies": {
-    "antd": "^3.9.3"
+    "antd": "3.26.18"
   },
   "dependencies": {
     "@ant-design/css-animation": "^1.7.2",
+    "@mcfed/components": "^0.6.3",
     "@mcfed/utils": "^0.2.0-rc8",
     "@types/qs": "^6.9.3",
     "@types/react-text-mask": "^5.4.6",

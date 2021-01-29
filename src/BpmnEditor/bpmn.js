@@ -1,9 +1,11 @@
 import React, {PureComponent} from 'react';
 import {notification} from 'antd';
-import BpmnModeler from './BpmnEditor/Modeler';
+import BpmnModeler from './Modeler';
 import BpmnViewer from 'bpmn-js/lib/Viewer';
 
-import {defaultXml} from './BpmnEditor/sources/xml';
+import {defaultXml} from './sources/xml';
+import 'bpmn-js/dist/assets/diagram-js.css';
+import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
 
 class Bpmn extends PureComponent {
   state = {
