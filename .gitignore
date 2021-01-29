@@ -27,3 +27,4 @@ yarn-error.log*
 /lib
 /cjs
 /es
+/dist
