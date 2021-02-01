@@ -5,7 +5,7 @@ import PropertiesView from './PropertiesView';
 
 export default class PropertiesPanel {
   constructor(options) {
-    const {modeler, container, onChange} = options;
+    const {modeler, container} = options;
 
     ReactDOM.render(
       <PropertiesView

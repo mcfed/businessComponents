@@ -1,39 +1,41 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
-import Properites from '../properites';
-import {FormItem, Panel} from '@mcfed/components';
-import {Input} from 'antd';
+import {Properites} from '../properites';
+import {SimpleProperite} from '../SimpleProperites';
 
 const stories = storiesOf('bpmn-properites', module);
-
-function simpleProperite() {
-  return (
-    <Panel>
-      <FormItem label='节点Id'>
-        <Input name='node'></Input>
-      </FormItem>
-      <FormItem label='审批类型'>
-        <Select
-          options={[
-            {label: '或签', value: '0'},
-            {label: '会签', value: '1'}
-          ]}></Select>
-      </FormItem>
-      <FormItem label='审批人员'>
-        <Select
-          options={[
-            {label: '或签', value: '0'},
-            {label: '会签', value: '1'}
-          ]}></Select>
-      </FormItem>
-    </Panel>
-  );
-}
 
 stories.add('基础使用', () => {
   return (
     <Properites title='属性面板'>
-      <simpleProperite></simpleProperite>
+      <SimpleProperite></SimpleProperite>
+    </Properites>
+  );
+});
+
+stories.add('基础使用带初始化值', () => {
+  const values = {
+    node: {
+      name: 'node',
+      value: 'abc'
+    },
+    type: {
+      name: 'type',
+      value: '0'
+    },
+    user: {
+      name: 'user',
+      value: '1'
+    }
+  };
+  return (
+    <Properites
+      title='属性面板'
+      values={values}
+      onChange={function(values) {
+        console.log(values);
+      }}>
+      <SimpleProperite></SimpleProperite>
     </Properites>
   );
 });

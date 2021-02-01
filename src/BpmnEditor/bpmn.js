@@ -5,8 +5,9 @@ import BpmnViewer from 'bpmn-js/lib/Viewer';
 
 import {defaultXml} from './sources/xml';
 import 'bpmn-js/dist/assets/diagram-js.css';
-import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
 
+import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
+import './index.css';
 class Bpmn extends PureComponent {
   state = {
     scale: 1, // 流程图比例
@@ -55,6 +56,7 @@ class Bpmn extends PureComponent {
   }
   initBpmn() {
     const {readonly, xmlData} = this.state;
+
     // 避免缓存，每次清一下
     this.bpmnModeler && this.bpmnModeler.destroy();
     if (readonly) {
@@ -166,7 +168,7 @@ class Bpmn extends PureComponent {
   // 渲染 xml 格式
   renderDiagram = xml => {
     const me = this;
-    const {getBpmn, elementChange} = me.props;
+    const {getBpmn, elementChange, runNodes} = me.props;
     const viewer = this.bpmnModeler;
     this.bpmnModeler.importXML(xml, (err, data) => {
       if (err) {
@@ -175,6 +177,7 @@ class Bpmn extends PureComponent {
           description: '导入失败'
         });
       } else {
+        runNodes && this.mergeRunNode(runNodes);
         viewer.on('element.changed', e => {
           viewer.saveXML({format: true}, (err, data) => {
             elementChange && elementChange(data);
@@ -212,6 +215,28 @@ class Bpmn extends PureComponent {
       hideCount: 1
     });
   };
+  mergeRunNode(bpmnData) {
+    const {bpmnModeler} = this;
+    const canvas = bpmnModeler.get('canvas');
+    const allShapes = bpmnModeler.get('elementRegistry').getAll();
+    // bpmnData 后台返回节点数据
+    //循环节点添加颜色
+    bpmnData.map(item => {
+      const shapeObj = allShapes.find(
+        subItem => subItem.businessObject.id === item.id
+      );
+      if (shapeObj && shapeObj.id) {
+        // 节点状态
+        canvas.addMarker(item.id, 'highlight-' + item.runState);
+        if (shapeObj.incoming && shapeObj.incoming.length) {
+          // 节点连线来源状态
+          shapeObj.incoming.map(subItem => {
+            canvas.addMarker(subItem.id, 'highlight-line-' + item.runState);
+          });
+        }
+      }
+    });
+  }
 
   render() {
     const {hidePanel, hideFold, hideCount, readonly} = this.state;
