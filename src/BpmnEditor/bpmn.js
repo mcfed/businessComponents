@@ -7,7 +7,7 @@ import {defaultXml} from './sources/xml';
 import 'bpmn-js/dist/assets/diagram-js.css';
 
 import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
-import './index.css';
+import './index.less';
 class Bpmn extends PureComponent {
   state = {
     scale: 1, // 流程图比例
@@ -252,30 +252,7 @@ class Bpmn extends PureComponent {
           {!readonly ? (
             <div>
               <div
-                className={`properties-panel-fold
-                                ${
-                                  hideCount === 1
-                                    ? hidePanel
-                                      ? 'fold'
-                                      : ''
-                                    : ''
-                                }
-                                ${
-                                  hideCount === 1
-                                    ? hideFold
-                                      ? 'hide'
-                                      : ''
-                                    : ''
-                                }
-                            `}
-                id='js-panel-fold'
-                title='折叠'
-                onClick={this.handlePanelFold}
-              />
-              <div
-                className={`properties-panel-parent ${
-                  hideCount === 1 ? (hidePanel ? 'hidePanel' : 'showPanel') : ''
-                }`}
+                className={`properties-panel-parent`}
                 id='properties-panel'
                 style={{height: '100%'}}
               />
