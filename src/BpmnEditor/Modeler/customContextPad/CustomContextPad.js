@@ -123,11 +123,11 @@ export default class CustomContextPad {
           'bpmn-icon-end-event-none',
           translate('Append EndEvent')
         ),
-        'append.gateway': appendAction(
-          'bpmn:ExclusiveGateway',
-          'bpmn-icon-gateway-none',
-          translate('Append Gateway')
-        ),
+        // 'append.gateway': appendAction(
+        //   'bpmn:ExclusiveGateway',
+        //   'bpmn-icon-gateway-none',
+        //   translate('Append Gateway')
+        // ),
         // "append.intermediate-event": appendAction("bpmn:IntermediateThrowEvent", "bpmn-icon-intermediate-event-none", translate("Append Intermediate/Boundary Event")),
         'append.user-task': {
           group: 'model',

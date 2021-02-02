@@ -30,6 +30,8 @@ stories.add('基础使用', () => {
           </Properites>,
           container
         );
+      } else {
+        ReactDOM.render(<span></span>, container);
       }
     });
   }
@@ -89,19 +91,23 @@ stories.add('运行中模式', () => {
   const runNodes = [
     {
       id: 'Gateway_1b6xc5z',
-      runState: 3
+      runState: 'PENDING'
     },
     {
       id: 'Activity_0irvtx6',
-      runState: 1
+      runState: 'APPROVAL'
     },
     {
       id: 'Activity_1obf0qd',
-      runState: 2
+      runState: 'FORWARD'
     },
     {
       id: 'Activity_1hqlmun',
-      runState: 2
+      runState: 'REJECT'
+    },
+    {
+      id: 'Event_1s0mtxb',
+      runState: 'REFUSED'
     }
   ];
   function initPanel(bpmnModeler, container) {
