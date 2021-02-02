@@ -3,9 +3,6 @@ import {notification} from 'antd';
 import BpmnModeler from './Modeler';
 import BpmnViewer from 'bpmn-js/lib/Viewer';
 import {defaultXml} from './sources/xml';
-import 'bpmn-js/dist/assets/diagram-js.css';
-import 'bpmn-js/dist/assets/bpmn-font/css/bpmn-embedded.css';
-import './index.less';
 
 class Bpmn extends PureComponent {
   state = {
