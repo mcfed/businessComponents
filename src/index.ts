@@ -1,3 +1,1 @@
-import Bpmn from './BpmnEditor/bpmn';
-
-export default Bpmn;
+export {default as Bpmn} from './BpmnEditor/bpmn';
