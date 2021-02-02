@@ -15,26 +15,11 @@ stories.add('基础使用', () => {
 
 stories.add('基础使用带初始化值', () => {
   const values = {
-    node: {
-      name: 'node',
-      value: 'abc'
-    },
-    type: {
-      name: 'type',
-      value: '0'
-    },
-    user: {
-      name: 'user',
-      value: '1'
-    }
+    approvalType: '1',
+    handler: 'cwj'
   };
   return (
-    <Properites
-      title='属性面板'
-      values={values}
-      onChange={function(values) {
-        console.log(values);
-      }}>
+    <Properites title='属性面板' values={values} onChange={function(values) {}}>
       <SimpleProperite></SimpleProperite>
     </Properites>
   );

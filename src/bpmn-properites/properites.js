@@ -1,33 +1,41 @@
 import React, {useEffect, useRef, useCallback} from 'react';
 import {BaseForm, Panel} from '@mcfed/components';
+import {Button} from 'antd';
 
 export function Properites(props) {
   const formRef = useRef();
-  const {values} = props;
+  const {values, bpmnModeler, element} = props;
 
   useEffect(
     function() {
-      for (var i in values) {
-        const obj = {[i]: values[i]};
-        formRef.current && formRef.current.setFieldsValue(obj);
+      if (values) {
+        for (var i in values) {
+          const obj = {[i]: values[i]};
+          formRef.current && formRef.current.setFieldsValue(obj);
+        }
       }
     },
     [props.values]
   );
 
-  const handlerOK = function() {
-    console.log('click');
-    formRef.current.validateFieldsAndScroll({force: true}, (err, values) => {
+  const handlerOK = function(props) {
+    formRef.current.validateFieldsAndScroll({force: true}, (err, data) => {
       if (err) {
         return;
       }
-      console.log('values');
-      props.onChagne(values);
+      const modeling = bpmnModeler.get('modeling');
+      for (var i in data) {
+        const changeObj = {[i]: data[i]};
+        modeling.updateProperties(element, changeObj);
+      }
     });
   };
   return (
-    <Panel title={props.title} onOK={handlerOK}>
+    <div>
       <BaseForm ref={formRef}>{props.children}</BaseForm>
-    </Panel>
+      <Button type='primary' onClick={handlerOK}>
+        确定
+      </Button>
+    </div>
   );
 }

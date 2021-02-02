@@ -15,9 +15,13 @@ stories.add('基础使用', () => {
       if (e.newSelection && e.newSelection.length) {
         let values = e.newSelection[0].businessObject.$attrs;
         values.id = e.newSelection[0].businessObject.id;
-
+        let element = e.newSelection[0];
         ReactDOM.render(
-          <Properites values={values} title='属性面板'>
+          <Properites
+            element={element}
+            bpmnModeler={bpmnModeler}
+            values={values}
+            title='属性面板'>
             <SimpleProperite></SimpleProperite>
           </Properites>,
           container
