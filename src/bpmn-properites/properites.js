@@ -3,9 +3,14 @@ import {BaseForm, Panel} from '@mcfed/components';
 
 export function Properites(props) {
   const formRef = useRef();
+  const {values} = props;
+
   useEffect(
     function() {
-      formRef.current && formRef.current.setFields(props.values);
+      for (var i in values) {
+        const obj = {[i]: values[i]};
+        formRef.current && formRef.current.setFieldsValue(obj);
+      }
     },
     [props.values]
   );

@@ -11,15 +11,22 @@ const stories = storiesOf('Bpmn', module);
 
 stories.add('基础使用', () => {
   function initPanel(bpmnModeler, container) {
-    ReactDOM.render(
-      <Properites title='属性面板'>
-        <SimpleProperite></SimpleProperite>
-      </Properites>,
-      container
-    );
+    bpmnModeler.on('selection.changed', e => {
+      if (e.newSelection && e.newSelection.length) {
+        let values = e.newSelection[0].businessObject.$attrs;
+        values.id = e.newSelection[0].businessObject.id;
+
+        ReactDOM.render(
+          <Properites values={values} title='属性面板'>
+            <SimpleProperite></SimpleProperite>
+          </Properites>,
+          container
+        );
+      }
+    });
   }
   function elementChange(value) {
-    console.log(value);
+    // console.log(value);
   }
 
   return (
