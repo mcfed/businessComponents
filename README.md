@@ -3,7 +3,7 @@
 当前版本已发布 npm 仓库
 
 - 运行命令安装包
-  `npm install @mcfed/businessComponents`
+  `npm install @mcfed/business-components`
 
 ## develop 规范要求
 

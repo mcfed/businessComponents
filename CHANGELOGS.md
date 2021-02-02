@@ -13,4 +13,4 @@
 
 # 0.1.0
 
-- feat: mcfed/businessComponents 业务组件库
+- feat: mcfed/business-components 业务组件库
