@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useCallback} from 'react';
 import {BaseForm, Panel} from '@mcfed/components';
-import {Button} from 'antd';
+import {Button, message} from 'antd';
 
 export function Properites(props) {
   const formRef = useRef();

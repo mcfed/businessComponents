@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import ReactDOM from 'react-dom';
 import {storiesOf} from '@storybook/react';
-
+import {Button} from 'antd';
 import {diagramXML} from '../sources/xml';
 import McBpmn from '../index';
 import {Properites} from '../../bpmn-properites/properites';
@@ -9,8 +9,13 @@ import {SimpleProperite} from '../../bpmn-properites/SimpleProperites';
 
 const stories = storiesOf('Bpmn', module);
 
+// const [Modeler, setModeler] = useState(null);
+
+let Modeler = null;
+
 stories.add('基础使用', () => {
   function initPanel(bpmnModeler, container) {
+    Modeler = bpmnModeler;
     bpmnModeler.on('selection.changed', e => {
       if (e.newSelection && e.newSelection.length) {
         let values = e.newSelection[0].businessObject.$attrs;
@@ -32,17 +37,26 @@ stories.add('基础使用', () => {
   function elementChange(value) {
     // console.log(value);
   }
-
+  function submit() {
+    Modeler.saveXML({format: true}, (err, data) => {
+      console.log(data);
+    });
+  }
   return (
-    <McBpmn
-      xmlData={diagramXML}
-      initPanel={initPanel}
-      elementChange={elementChange}
-      // getBpmn={this.getBpmn.bind(this)}
-      // readonly={readonly}
-      width={'100%'}
-      height={'100vh'}
-    />
+    <div>
+      <McBpmn
+        xmlData={diagramXML}
+        initPanel={initPanel}
+        // elementChange={elementChange}
+        // getBpmn={getBpmn}
+        // readonly={readonly}
+        width={'100%'}
+        height={'100vh'}
+      />
+      <Button type='primary' onClick={submit}>
+        提交
+      </Button>
+    </div>
   );
 });
 
