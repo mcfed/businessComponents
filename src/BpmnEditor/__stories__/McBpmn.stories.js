@@ -25,8 +25,7 @@ stories.add('基础使用', () => {
           <Properites
             element={element}
             bpmnModeler={bpmnModeler}
-            values={values}
-            title='属性面板'>
+            values={values}>
             <SimpleProperite></SimpleProperite>
           </Properites>,
           container
