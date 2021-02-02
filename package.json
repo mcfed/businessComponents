@@ -89,6 +89,7 @@
     "classnames": "^2.2.6",
     "git": "^0.1.5",
     "indexof": "^0.0.1",
+    "inherits": "^2.0.4",
     "prop-types": "^15.6.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
