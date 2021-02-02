@@ -62,7 +62,6 @@ class Bpmn extends PureComponent {
       this.bpmnModeler = new BpmnViewer({
         container: '#canvas'
       });
-      this.handlePanelFold();
     } else {
       this.bpmnModeler = new BpmnModeler({
         container: '#canvas'
@@ -80,89 +79,6 @@ class Bpmn extends PureComponent {
     // 	bjsIoLogo.removeChild(bjsIoLogo.firstChild);
     // }
   }
-
-  download = (type, data, name) => {
-    let dataTrack = '';
-    const a = document.createElement('a');
-
-    switch (type) {
-      case 'xml':
-        dataTrack = 'bpmn';
-        break;
-      case 'svg':
-        dataTrack = 'svg';
-        break;
-      default:
-        break;
-    }
-
-    name = name || `diagram.${dataTrack}`;
-
-    a.setAttribute(
-      'href',
-      `data:application/bpmn20-xml;charset=UTF-8,${encodeURIComponent(data)}`
-    );
-    a.setAttribute('target', '_blank');
-    a.setAttribute('dataTrack', `diagram:download-${dataTrack}`);
-    a.setAttribute('download', name);
-
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  };
-
-  // 导入 xml 文件
-  handleOpenFile = e => {
-    const that = this;
-    if (e.target.files.length > 0) {
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      let data = '';
-      reader.readAsText(file);
-      reader.onload = function(event) {
-        data = event.target.result;
-        that.renderDiagram(data, 'open');
-      };
-    }
-  };
-
-  // 前进
-  handleRedo = () => {
-    this.bpmnModeler.get('commandStack').redo();
-  };
-
-  // 后退
-  handleUndo = () => {
-    this.bpmnModeler.get('commandStack').undo();
-  };
-
-  // 下载 SVG 格式
-  handleDownloadSvg = () => {
-    this.bpmnModeler.saveSVG({format: true}, (err, data) => {
-      this.download('svg', data);
-    });
-  };
-
-  // 下载 XML 格式
-  handleDownloadXml = () => {
-    this.bpmnModeler.saveXML({format: true}, (err, data) => {
-      this.download('xml', data);
-    });
-  };
-
-  // 流程图放大缩小
-  handleZoom = radio => {
-    const newScale = !radio
-      ? 1.0 // 不输入radio则还原
-      : this.state.scale + radio <= 0.2 // 最小缩小倍数
-      ? 0.2
-      : this.state.scale + radio;
-
-    this.bpmnModeler.get('canvas').zoom(newScale);
-    this.setState({
-      scale: newScale
-    });
-  };
 
   // 渲染 xml 格式
   renderDiagram = xml => {
@@ -189,31 +105,6 @@ class Bpmn extends PureComponent {
     });
   };
 
-  // 预览图片
-  handlePreview = () => {
-    this.bpmnModeler.saveSVG({format: true}, (err, data) => {
-      this.setState({
-        svgSrc: data,
-        svgVisible: true
-      });
-    });
-  };
-
-  // 预览XML
-  handlePreviewXml = () => {
-    this.bpmnModeler.saveXML({format: true}, (err, data) => {
-      console.log(data);
-    });
-  };
-
-  // 折叠
-  handlePanelFold = () => {
-    const {hidePanel} = this.state;
-    this.setState({
-      hidePanel: !hidePanel,
-      hideCount: 1
-    });
-  };
   mergeRunNode(bpmnData) {
     const {bpmnModeler} = this;
     const canvas = bpmnModeler.get('canvas');
