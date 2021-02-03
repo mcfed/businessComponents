@@ -17,7 +17,7 @@ class Bpmn extends PureComponent {
     this.setState(
       {
         readonly,
-        xmlData: xmlData || defaultXml
+        xmlData: readonly ? xmlData : xmlData || defaultXml
       },
       () => {
         this.initBpmn();
@@ -67,6 +67,9 @@ class Bpmn extends PureComponent {
       // 外部初始化属性面板
       this.props.initPanel &&
         this.props.initPanel(this.bpmnModeler, $propertiesContainer);
+    }
+    if (!xmlData) {
+      return;
     }
     this.renderDiagram(xmlData);
 
