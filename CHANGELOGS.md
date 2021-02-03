@@ -11,6 +11,10 @@
 
 -->
 
+# 0.1.5
+
+- feat: mcfed/business-components 去除引入 xml 错误弹窗
+
 # 0.1.0
 
 - feat: mcfed/business-components 业务组件库
