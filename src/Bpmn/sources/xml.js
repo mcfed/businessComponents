@@ -101,7 +101,6 @@ export const defaultXml = `<?xml version="1.0" encoding="UTF-8"?>
     <bpmn2:endEvent id="Event_19ide9a" name="结束">
       <bpmn2:incoming>Flow_089y2ps</bpmn2:incoming>
     </bpmn2:endEvent>
-    <bpmn2:sequenceFlow id="Flow_089y2ps" sourceRef="Event_08ivsah" targetRef="Event_19ide9a" />
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_1">

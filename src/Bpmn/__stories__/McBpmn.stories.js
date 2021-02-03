@@ -6,10 +6,8 @@ import {diagramXML} from '../sources/xml';
 import McBpmn from '../index';
 import {Properites} from '../../bpmn-properites/properites';
 import {SimpleProperite} from '../../bpmn-properites/SimpleProperites';
-
+import '../style/index';
 const stories = storiesOf('Bpmn', module);
-
-// const [Modeler, setModeler] = useState(null);
 
 let Modeler = null;
 
@@ -46,7 +44,7 @@ stories.add('基础使用', () => {
   return (
     <div>
       <McBpmn
-        xmlData={diagramXML}
+        xmlData={null}
         initPanel={initPanel}
         // elementChange={elementChange}
         // getBpmn={getBpmn}

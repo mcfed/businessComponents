@@ -84,10 +84,7 @@ class Bpmn extends PureComponent {
     const viewer = this.bpmnModeler;
     this.bpmnModeler.importXML(xml, (err, data) => {
       if (err) {
-        notification.error({
-          message: '提示',
-          description: '导入失败'
-        });
+        console.log('导入失败', err);
       } else {
         runNodes && this.mergeRunNode(runNodes);
         viewer.on('element.changed', e => {
