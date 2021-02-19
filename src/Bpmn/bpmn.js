@@ -2,6 +2,8 @@ import React, {PureComponent} from 'react';
 import {notification} from 'antd';
 import BpmnModeler from './Modeler';
 import BpmnViewer from 'bpmn-js/lib/Viewer';
+// 引入flowable的节点文件
+import flowableModdle from './flowModel/flowable.json';
 import {defaultXml} from './sources/xml';
 
 class Bpmn extends PureComponent {
@@ -61,7 +63,10 @@ class Bpmn extends PureComponent {
       });
     } else {
       this.bpmnModeler = new BpmnModeler({
-        container: '#canvas'
+        container: '#canvas',
+        moddleExtensions: {
+          camunda: flowableModdle
+        }
       });
       const $propertiesContainer = document.querySelector('#properties-panel');
       // 外部初始化属性面板
