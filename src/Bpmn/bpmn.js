@@ -3,7 +3,7 @@ import {notification} from 'antd';
 import BpmnModeler from './Modeler';
 import BpmnViewer from 'bpmn-js/lib/Viewer';
 // 引入flowable的节点文件
-import flowableModdle from './flowModel/flowable.json';
+// import flowableModdle from './flowModel/flowable.json';
 import {defaultXml} from './sources/xml';
 
 class Bpmn extends PureComponent {
@@ -15,9 +15,10 @@ class Bpmn extends PureComponent {
     readonly: false
   };
   componentDidMount() {
-    const {readonly, xmlData} = this.props;
+    const {readonly, xmlData, camundaModdle} = this.props;
     this.setState(
       {
+        camundaModdle,
         readonly,
         xmlData: readonly ? xmlData : xmlData || defaultXml
       },
@@ -53,8 +54,7 @@ class Bpmn extends PureComponent {
     }
   }
   initBpmn() {
-    const {readonly, xmlData} = this.state;
-
+    const {readonly, xmlData, camundaModdle} = this.state;
     // 避免缓存，每次清一下
     this.bpmnModeler && this.bpmnModeler.destroy();
     if (readonly) {
@@ -65,7 +65,7 @@ class Bpmn extends PureComponent {
       this.bpmnModeler = new BpmnModeler({
         container: '#canvas',
         moddleExtensions: {
-          camunda: flowableModdle
+          camunda: camundaModdle
         }
       });
       const $propertiesContainer = document.querySelector('#properties-panel');
