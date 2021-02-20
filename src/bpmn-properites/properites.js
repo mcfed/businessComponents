@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useCallback} from 'react';
 import {BaseForm, Panel} from '@mcfed/components';
 import {Button, message} from 'antd';
-
 export function Properites(props) {
   const formRef = useRef();
   const {values, bpmnModeler, element} = props;
@@ -17,16 +16,15 @@ export function Properites(props) {
     },
     [props.values]
   );
-
   const handlerOK = function(props) {
     formRef.current.validateFieldsAndScroll({force: true}, (err, data) => {
       if (err) {
         return;
       }
-
       const modeling = bpmnModeler.get('modeling');
       const moddle = bpmnModeler.get('moddle');
       const bpmnFactory = bpmnModeler.get('bpmnFactory');
+
       let elementId = element.id;
       if (element.type === 'bpmn:UserTask') {
         const loopCharacteristics = moddle.create(
@@ -57,15 +55,50 @@ export function Properites(props) {
           loopCharacteristics: loopCharacteristics
         });
         // 查看输出XML
-        // bpmnModeler.saveXML({format: true}, (err, data) => {
-        //   console.log(data);
-        // });
+        bpmnModeler.saveXML({format: true}, (err, data) => {
+          console.log(data);
+          // download('xml', data);
+        });
       }
+
+      modeling.updateProperties(element, {assignee: '${assignee1}'});
+      modeling.updateProperties(element, {candidateGroups: data.handler});
+
       for (var i in data) {
         const changeObj = {[i]: data[i]};
         modeling.updateProperties(element, changeObj);
       }
     });
+  };
+
+  const download = function(type, data, name) {
+    let dataTrack = '';
+    const a = document.createElement('a');
+
+    switch (type) {
+      case 'xml':
+        dataTrack = 'bpmn';
+        break;
+      case 'svg':
+        dataTrack = 'svg';
+        break;
+      default:
+        break;
+    }
+
+    name = name || `diagram.${dataTrack}`;
+
+    a.setAttribute(
+      'href',
+      `data:application/bpmn20-xml;charset=UTF-8,${encodeURIComponent(data)}`
+    );
+    a.setAttribute('target', '_blank');
+    a.setAttribute('dataTrack', `diagram:download-${dataTrack}`);
+    a.setAttribute('download', name);
+
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   };
   return (
     <div>
