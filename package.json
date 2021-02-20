@@ -10,7 +10,7 @@
     "test": "jest",
     "test:watch": "npm test -- --watch",
     "build": "npm run tsc",
-    "tsc": "node scripts/build.js && node scripts/tsc.js && copyfiles -u 1 src/**/**/*.json lib",
+    "tsc": "node scripts/build.js && node scripts/tsc.js && copyfiles -u 1 src/**/**/*.json lib && copyfiles -u 1 src/**/**/*.json es",
     "prepublish": "npm run build"
   },
   "keywords": [
