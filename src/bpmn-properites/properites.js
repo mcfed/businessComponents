@@ -1,6 +1,8 @@
 import React, {useEffect, useRef, useCallback} from 'react';
 import {BaseForm, Panel} from '@mcfed/components';
 import {Button, message} from 'antd';
+import elementHelper from 'bpmn-js-properties-panel/lib/helper/ElementHelper';
+
 export function Properites(props) {
   const formRef = useRef();
   const {values, bpmnModeler, element} = props;
@@ -16,6 +18,7 @@ export function Properites(props) {
     },
     [props.values]
   );
+
   const handlerOK = function(props) {
     formRef.current.validateFieldsAndScroll({force: true}, (err, data) => {
       if (err) {
@@ -30,9 +33,6 @@ export function Properites(props) {
         const loopCharacteristics = moddle.create(
           'bpmn:MultiInstanceLoopCharacteristics'
         );
-        loopCharacteristics['collection'] = elementId;
-        loopCharacteristics['elementVariable'] = 'assignee';
-        loopCharacteristics['isSequential'] = 'false';
         let typeText = null;
         if (data.approvalType == 1) {
           //或签
@@ -42,7 +42,7 @@ export function Properites(props) {
           //会签
           typeText = '${nrOfCompletedInstances/nrOfInstances >= 1 }';
         }
-        let completionCondition = moddle.create(
+        let completionCondition = elementHelper.createElement(
           'bpmn:FormalExpression',
           {
             body: `${typeText}`
@@ -51,23 +51,49 @@ export function Properites(props) {
           bpmnFactory
         );
         loopCharacteristics['completionCondition'] = completionCondition;
+        loopCharacteristics['collection'] = elementId;
+        loopCharacteristics['elementVariable'] = 'assignee';
+        loopCharacteristics['isSequential'] = 'false';
+
         modeling.updateProperties(element, {
           loopCharacteristics: loopCharacteristics
         });
-        // 查看输出XML
-        bpmnModeler.saveXML({format: true}, (err, data) => {
-          console.log(data);
-          // download('xml', data);
-        });
+        modeling.updateProperties(element, {assignee: '${assignee1}'});
       }
 
-      modeling.updateProperties(element, {assignee: '${assignee1}'});
-      modeling.updateProperties(element, {candidateGroups: data.handler});
+      // 自定义扩展属性
+      let propertiesConifg = elementHelper.createElement(
+        'bpmn:FormalExpression',
+        {
+          body: `{handler: ${data.handler}}`
+        },
+        extensionElements,
+        bpmnFactory
+      );
+      let extensionElements = elementHelper.createElement(
+        'bpmn:ExtensionElements',
+        {
+          values: [propertiesConifg]
+        },
+        element,
+        bpmnFactory
+      );
 
+      extensionElements['properties'] = propertiesConifg;
+      modeling.updateProperties(element, {
+        extensionElements: extensionElements
+      });
+      //自定义扩展属性
+      var customAttr = element.businessObject.extensionElements.values[0].body;
       for (var i in data) {
         const changeObj = {[i]: data[i]};
         modeling.updateProperties(element, changeObj);
       }
+      // 查看输出XML
+      bpmnModeler.saveXML({format: true}, (err, data) => {
+        console.log(data);
+        // download('xml', data);
+      });
     });
   };
 
