@@ -6,7 +6,6 @@ import {diagramXML} from '../sources/xml';
 import McBpmn from '../index';
 import {Properites} from '../../bpmn-properites/properites';
 import {SimpleProperite} from '../../bpmn-properites/SimpleProperites';
-import camundaModdle from '../flowModel/flowable.json';
 
 import '../style/index';
 const stories = storiesOf('Bpmn', module);
@@ -47,7 +46,6 @@ stories.add('基础使用', () => {
     <div>
       <McBpmn
         xmlData={null}
-        camundaModdle={camundaModdle}
         initPanel={initPanel}
         // elementChange={elementChange}
         // getBpmn={getBpmn}
