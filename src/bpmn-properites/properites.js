@@ -58,33 +58,36 @@ export function Properites(props) {
         modeling.updateProperties(element, {
           loopCharacteristics: loopCharacteristics
         });
-        modeling.updateProperties(element, {assignee: '${assignee1}'});
+        modeling.updateProperties(element, {
+          'camunda:assignee': '${assignee1}'
+        });
+
+        // 自定义扩展属性
+        let propertiesConifg = elementHelper.createElement(
+          'bpmn:FormalExpression',
+          {
+            body: `{handler: ${data.handler}}`
+          },
+          extensionElements,
+          bpmnFactory
+        );
+        let extensionElements = elementHelper.createElement(
+          'bpmn:ExtensionElements',
+          {
+            values: [propertiesConifg]
+          },
+          element,
+          bpmnFactory
+        );
+
+        extensionElements['properties'] = propertiesConifg;
+        modeling.updateProperties(element, {
+          extensionElements: extensionElements
+        });
       }
 
-      // 自定义扩展属性
-      let propertiesConifg = elementHelper.createElement(
-        'bpmn:FormalExpression',
-        {
-          body: `{handler: ${data.handler}}`
-        },
-        extensionElements,
-        bpmnFactory
-      );
-      let extensionElements = elementHelper.createElement(
-        'bpmn:ExtensionElements',
-        {
-          values: [propertiesConifg]
-        },
-        element,
-        bpmnFactory
-      );
-
-      extensionElements['properties'] = propertiesConifg;
-      modeling.updateProperties(element, {
-        extensionElements: extensionElements
-      });
       //自定义扩展属性
-      var customAttr = element.businessObject.extensionElements.values[0].body;
+      // var customAttr = element.businessObject.extensionElements.values[0].body;
       for (var i in data) {
         const changeObj = {[i]: data[i]};
         modeling.updateProperties(element, changeObj);
