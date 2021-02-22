@@ -20,8 +20,9 @@ stories.add('基础使用', () => {
         let element = e.newSelection[0];
         let values = {};
         if (e.newSelection[0].businessObject.extensionElements) {
-          let body = e.newSelection[0].businessObject.extensionElements.body;
-          values = JSON.parse(body);
+          let extensionElementsVal =
+            e.newSelection[0].businessObject.extensionElements.values[0].values;
+          values = extensionElementsVal;
         }
         ReactDOM.render(
           <Properites

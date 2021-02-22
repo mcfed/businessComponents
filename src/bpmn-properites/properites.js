@@ -9,11 +9,13 @@ export function Properites(props) {
 
   useEffect(
     function() {
-      if (values) {
-        for (var i in values) {
-          const obj = {[i]: values[i]};
-          formRef.current && formRef.current.setFieldsValue(obj);
-        }
+      if (values && values.length) {
+        values.map(item => {
+          formRef.current &&
+            formRef.current.setFieldsValue({
+              [item.name]: item.value
+            });
+        });
       }
     },
     [props.values]
@@ -61,10 +63,29 @@ export function Properites(props) {
           'camunda:assignee': '${assignee}'
         });
 
-        let experession = moddle.create('bpmn:FormalExpression', {
-          body: `{"approvalType": "${data.approvalType}"}`
+        // 自定义扩展属性
+        let values = [];
+        let Property = moddle.create('camunda:Property', {
+          name: 'approvalType',
+          value: data.approvalType
         });
-        modeling.updateProperties(element, {extensionElements: experession});
+        let Property2 = moddle.create('camunda:Property', {
+          name: 'testKey',
+          value: 2222
+        });
+        values.push(Property);
+        values.push(Property2);
+        let Properties = moddle.create('camunda:Properties', {
+          values: values
+        });
+
+        let extensionElements = moddle.create('bpmn:ExtensionElements', {
+          values: [Properties]
+        });
+
+        modeling.updateProperties(element, {
+          extensionElements: extensionElements
+        });
       }
 
       let allElement = bpmnModeler.get('elementRegistry').getAll();
