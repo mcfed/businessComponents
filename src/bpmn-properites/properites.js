@@ -54,45 +54,25 @@ export function Properites(props) {
         loopCharacteristics['collection'] = elementId;
         loopCharacteristics['elementVariable'] = 'assignee';
         loopCharacteristics['isSequential'] = 'false';
-
-        // 自定义扩展属性
-        let propertiesConifg = elementHelper.createElement(
-          'bpmn:FormalExpression',
-          {
-            body: `{handler: ${data.handler}}`
-          },
-          extensionElements,
-          bpmnFactory
-        );
-        let extensionElements = elementHelper.createElement(
-          'bpmn:ExtensionElements',
-          {
-            values: [propertiesConifg]
-          },
-          element,
-          bpmnFactory
-        );
-
-        extensionElements['properties'] = propertiesConifg;
-
         modeling.updateProperties(element, {
           loopCharacteristics: loopCharacteristics
         });
         modeling.updateProperties(element, {
-          'camunda:assignee': '${assignee1}'
+          'camunda:assignee': '${assignee}'
         });
 
-        modeling.updateProperties(element, {
-          extensionElements: extensionElements
+        let experession = moddle.create('bpmn:FormalExpression', {
+          body: `{"approvalType": "${data.approvalType}"}`
         });
+        modeling.updateProperties(element, {extensionElements: experession});
       }
 
-      //自定义扩展属性
-      // var customAttr = element.businessObject.extensionElements.values[0].body;
-      for (var i in data) {
-        const changeObj = {[i]: data[i]};
-        modeling.updateProperties(element, changeObj);
-      }
+      let allElement = bpmnModeler.get('elementRegistry').getAll();
+      allElement.map(item => {
+        if (item.businessObject.$attrs && item.businessObject.$attrs.id) {
+          delete item.businessObject.$attrs.id;
+        }
+      });
       // 查看输出XML
       bpmnModeler.saveXML({format: true}, (err, data) => {
         console.log(data);

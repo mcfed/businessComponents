@@ -17,9 +17,12 @@ stories.add('基础使用', () => {
     Modeler = bpmnModeler;
     bpmnModeler.on('selection.changed', e => {
       if (e.newSelection && e.newSelection.length) {
-        let values = e.newSelection[0].businessObject.$attrs;
-        values.id = e.newSelection[0].businessObject.id;
         let element = e.newSelection[0];
+        let values = {};
+        if (e.newSelection[0].businessObject.extensionElements) {
+          let body = e.newSelection[0].businessObject.extensionElements.body;
+          values = JSON.parse(body);
+        }
         ReactDOM.render(
           <Properites
             element={element}
