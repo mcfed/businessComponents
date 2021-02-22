@@ -18,7 +18,7 @@ stories.add('基础使用', () => {
     bpmnModeler.on('selection.changed', e => {
       if (e.newSelection && e.newSelection.length) {
         let element = e.newSelection[0];
-        let values = {};
+        let values = [];
         if (e.newSelection[0].businessObject.extensionElements) {
           let extensionElementsVal =
             e.newSelection[0].businessObject.extensionElements.values[0].values;

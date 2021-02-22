@@ -69,12 +69,7 @@ export function Properites(props) {
           name: 'approvalType',
           value: data.approvalType
         });
-        let Property2 = moddle.create('camunda:Property', {
-          name: 'testKey',
-          value: 2222
-        });
         values.push(Property);
-        values.push(Property2);
         let Properties = moddle.create('camunda:Properties', {
           values: values
         });
