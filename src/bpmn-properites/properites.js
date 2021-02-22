@@ -28,8 +28,8 @@ export function Properites(props) {
       const moddle = bpmnModeler.get('moddle');
       const bpmnFactory = bpmnModeler.get('bpmnFactory');
 
-      let elementId = element.id;
       if (element.type === 'bpmn:UserTask') {
+        let elementId = element.id;
         const loopCharacteristics = moddle.create(
           'bpmn:MultiInstanceLoopCharacteristics'
         );
@@ -55,13 +55,6 @@ export function Properites(props) {
         loopCharacteristics['elementVariable'] = 'assignee';
         loopCharacteristics['isSequential'] = 'false';
 
-        modeling.updateProperties(element, {
-          loopCharacteristics: loopCharacteristics
-        });
-        modeling.updateProperties(element, {
-          'camunda:assignee': '${assignee1}'
-        });
-
         // 自定义扩展属性
         let propertiesConifg = elementHelper.createElement(
           'bpmn:FormalExpression',
@@ -81,6 +74,14 @@ export function Properites(props) {
         );
 
         extensionElements['properties'] = propertiesConifg;
+
+        modeling.updateProperties(element, {
+          loopCharacteristics: loopCharacteristics
+        });
+        modeling.updateProperties(element, {
+          'camunda:assignee': '${assignee1}'
+        });
+
         modeling.updateProperties(element, {
           extensionElements: extensionElements
         });
