@@ -9,11 +9,13 @@ export function Properites(props) {
 
   useEffect(
     function() {
-      if (values) {
-        for (var i in values) {
-          const obj = {[i]: values[i]};
-          formRef.current && formRef.current.setFieldsValue(obj);
-        }
+      if (values && values.length) {
+        values.map(item => {
+          formRef.current &&
+            formRef.current.setFieldsValue({
+              [item.name]: item.value
+            });
+        });
       }
     },
     [props.values]
@@ -28,8 +30,8 @@ export function Properites(props) {
       const moddle = bpmnModeler.get('moddle');
       const bpmnFactory = bpmnModeler.get('bpmnFactory');
 
-      let elementId = element.id;
       if (element.type === 'bpmn:UserTask') {
+        let elementId = element.id;
         const loopCharacteristics = moddle.create(
           'bpmn:MultiInstanceLoopCharacteristics'
         );
@@ -54,41 +56,39 @@ export function Properites(props) {
         loopCharacteristics['collection'] = elementId;
         loopCharacteristics['elementVariable'] = 'assignee';
         loopCharacteristics['isSequential'] = 'false';
-
         modeling.updateProperties(element, {
           loopCharacteristics: loopCharacteristics
         });
-        modeling.updateProperties(element, {assignee: '${assignee1}'});
+        modeling.updateProperties(element, {
+          'camunda:assignee': '${assignee}'
+        });
+
+        // 自定义扩展属性
+        let values = [];
+        let Property = moddle.create('camunda:Property', {
+          name: 'approvalType',
+          value: data.approvalType
+        });
+        values.push(Property);
+        let Properties = moddle.create('camunda:Properties', {
+          values: values
+        });
+
+        let extensionElements = moddle.create('bpmn:ExtensionElements', {
+          values: [Properties]
+        });
+
+        modeling.updateProperties(element, {
+          extensionElements: extensionElements
+        });
       }
 
-      // 自定义扩展属性
-      let propertiesConifg = elementHelper.createElement(
-        'bpmn:FormalExpression',
-        {
-          body: `{handler: ${data.handler}}`
-        },
-        extensionElements,
-        bpmnFactory
-      );
-      let extensionElements = elementHelper.createElement(
-        'bpmn:ExtensionElements',
-        {
-          values: [propertiesConifg]
-        },
-        element,
-        bpmnFactory
-      );
-
-      extensionElements['properties'] = propertiesConifg;
-      modeling.updateProperties(element, {
-        extensionElements: extensionElements
+      let allElement = bpmnModeler.get('elementRegistry').getAll();
+      allElement.map(item => {
+        if (item.businessObject.$attrs && item.businessObject.$attrs.id) {
+          delete item.businessObject.$attrs.id;
+        }
       });
-      //自定义扩展属性
-      var customAttr = element.businessObject.extensionElements.values[0].body;
-      for (var i in data) {
-        const changeObj = {[i]: data[i]};
-        modeling.updateProperties(element, changeObj);
-      }
       // 查看输出XML
       bpmnModeler.saveXML({format: true}, (err, data) => {
         console.log(data);

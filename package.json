@@ -1,6 +1,6 @@
 {
   "name": "@mcfed/business-components",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "@mcfed for businessComponents",
   "main": "lib/index.js",
   "module": "es/index.js",
@@ -10,7 +10,7 @@
     "test": "jest",
     "test:watch": "npm test -- --watch",
     "build": "npm run tsc",
-    "tsc": "node scripts/build.js && node scripts/tsc.js && copyfiles -u 1 src/**/**/*.json lib",
+    "tsc": "node scripts/build.js && node scripts/tsc.js && copyfiles -u 1 src/**/**/*.json lib && copyfiles -u 1 src/**/**/*.json es",
     "prepublish": "npm run build"
   },
   "keywords": [
