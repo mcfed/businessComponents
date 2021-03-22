@@ -38,9 +38,7 @@ stories.add('基础使用', () => {
       }
     });
   }
-  function elementChange(value) {
-    // console.log(value);
-  }
+
   function submit() {
     Modeler.saveXML({format: true}, (err, data) => {
       console.log(data);
@@ -51,9 +49,6 @@ stories.add('基础使用', () => {
       <McBpmn
         xmlData={null}
         initPanel={initPanel}
-        // elementChange={elementChange}
-        // getBpmn={getBpmn}
-        // readonly={readonly}
         width={'100%'}
         height={'100vh'}
       />
@@ -66,23 +61,35 @@ stories.add('基础使用', () => {
 
 stories.add('只读查看模式', () => {
   function initPanel(bpmnModeler, container) {
-    ReactDOM.render(
-      <Properites title='属性面板'>
-        <SimpleProperite></SimpleProperite>
-      </Properites>,
-      container
-    );
-  }
-  function elementChange(value) {
-    console.log(value);
+    Modeler = bpmnModeler;
+    bpmnModeler.on('selection.changed', e => {
+      if (e.newSelection && e.newSelection.length) {
+        let element = e.newSelection[0];
+        let values = [];
+        if (e.newSelection[0].businessObject.extensionElements) {
+          let extensionElementsVal =
+            e.newSelection[0].businessObject.extensionElements.values[0].values;
+          values = extensionElementsVal;
+        }
+        ReactDOM.render(
+          <Properites
+            element={element}
+            bpmnModeler={bpmnModeler}
+            values={values}>
+            <SimpleProperite></SimpleProperite>
+          </Properites>,
+          container
+        );
+      } else {
+        ReactDOM.render(<span></span>, container);
+      }
+    });
   }
 
   return (
     <McBpmn
       xmlData={diagramXML}
       initPanel={initPanel}
-      elementChange={elementChange}
-      // getBpmn={this.getBpmn.bind(this)}
       readonly={true}
       width={'100%'}
       height={'100vh'}
@@ -121,17 +128,12 @@ stories.add('运行中模式', () => {
       container
     );
   }
-  function elementChange(value) {
-    console.log(value);
-  }
 
   return (
     <McBpmn
       xmlData={diagramXML}
       initPanel={initPanel}
       runNodes={runNodes}
-      elementChange={elementChange}
-      // getBpmn={this.getBpmn.bind(this)}
       readonly={true}
       width={'100%'}
       height={'100vh'}
