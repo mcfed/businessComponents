@@ -134,7 +134,8 @@ class Bpmn extends PureComponent {
     const {height, width} = this.props;
     const styleObj = {
       width: width || '100%',
-      height: height || '100vh'
+      height: height || '100vh',
+      position: 'relative'
     };
     return (
       <div>
