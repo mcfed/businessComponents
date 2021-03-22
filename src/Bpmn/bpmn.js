@@ -67,11 +67,11 @@ class Bpmn extends PureComponent {
           camunda: camundaModdle
         }
       });
-      const $propertiesContainer = document.querySelector('#properties-panel');
-      // 外部初始化属性面板
-      this.props.initPanel &&
-        this.props.initPanel(this.bpmnModeler, $propertiesContainer);
     }
+    // 外部初始化属性面板
+    const $propertiesContainer = document.querySelector('#properties-panel');
+    this.props.initPanel &&
+      this.props.initPanel(this.bpmnModeler, $propertiesContainer);
     if (!xmlData) {
       return;
     }
@@ -134,21 +134,20 @@ class Bpmn extends PureComponent {
     const {height, width} = this.props;
     const styleObj = {
       width: width || '100%',
-      height: height || '100vh'
+      height: height || '100vh',
+      position: 'relative'
     };
     return (
       <div>
         <div className={'container'} style={styleObj}>
           <div className={'canvas'} id='canvas' />
-          {!readonly ? (
-            <div>
-              <div
-                className={`properties-panel-parent`}
-                id='properties-panel'
-                style={{height: '100%'}}
-              />
-            </div>
-          ) : null}
+          <div>
+            <div
+              className={`properties-panel-parent`}
+              id='properties-panel'
+              style={{height: '100%'}}
+            />
+          </div>
         </div>
       </div>
     );

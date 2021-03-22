@@ -127,7 +127,7 @@ export function Properites(props) {
     document.body.removeChild(a);
   };
   return (
-    <div>
+    <div style={{background: '#fff'}}>
       <BaseForm ref={formRef}>{props.children}</BaseForm>
       <Button type='primary' onClick={handlerOK}>
         确定
