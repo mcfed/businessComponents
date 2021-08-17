@@ -145,7 +145,7 @@ class Bpmn extends PureComponent {
             <div
               className={`properties-panel-parent`}
               id='properties-panel'
-              style={{height: '100%'}}
+              // style={{height: '100%'}}
             />
           </div>
         </div>

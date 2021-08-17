@@ -155,14 +155,14 @@ export default class CustomPalette {
           // 	id: "create.call-activity",
           // 	...createAction("bpmn:CallActivity", "activity", "bpmn-icon-call-activity"),
           // },
-          // {
-          //   id: 'create.gateway',
-          //   ...createAction(
-          //     'bpmn:ExclusiveGateway',
-          //     'event',
-          //     'bpmn-icon-gateway-none'
-          //   )
-          // },
+          {
+            id: 'create.gateway',
+            ...createAction(
+              'bpmn:ExclusiveGateway',
+              'event',
+              'bpmn-icon-gateway-none'
+            )
+          },
           {
             id: 'create.end-event',
             ...createAction(
