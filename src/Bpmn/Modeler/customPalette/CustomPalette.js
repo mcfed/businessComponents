@@ -1,4 +1,5 @@
 import {assign} from 'min-dash';
+import {createExclusiveGateway} from '../createGateWay';
 
 /**
  * A palette that allows you to create BPMN _and_ custom elements.
@@ -46,7 +47,21 @@ export default class CustomPalette {
           shape.businessObject.di.isExpanded = options.isExpanded;
         }
 
-        create.start(event, shape);
+        if (type === 'bpmn:ExclusiveGateway') {
+          const eventBus = spaceTool._eventBus;
+          const modeling = spaceTool._modeling;
+          createExclusiveGateway(
+            elementFactory,
+            event,
+            shape,
+            eventBus,
+            modeling,
+            translate,
+            create
+          );
+        } else {
+          create.start(event, shape);
+        }
       }
 
       const shortType = type.replace(/^bpmn:/, '');
@@ -66,52 +81,52 @@ export default class CustomPalette {
       // {
       // 	title: translate("Tools"),
       // 	group: "tools",
-      // 	children: [
-      // 		{
-      // 			id: "hand-tool",
-      // 			group: "tools",
-      // 			className: "bpmn-icon-hand-tool",
-      // 			title: translate("Activate the hand tool"),
-      // 			action: {
-      // 				click: (event) => {
-      // 					handTool.activateHand(event);
+      // 		children: [
+      // 			{
+      // 				id: "hand-tool",
+      // 				group: "tools",
+      // 				className: "bpmn-icon-hand-tool",
+      // 				title: translate("Activate the hand tool"),
+      // 				action: {
+      // 					click: (event) => {
+      // 						handTool.activateHand(event);
+      // 					},
       // 				},
       // 			},
-      // 		},
-      // 		{
-      // 			id: "lasso-tool",
-      // 			group: "tools",
-      // 			className: "bpmn-icon-lasso-tool",
-      // 			title: translate("Activate the lasso tool"),
-      // 			action: {
-      // 				click: (event) => {
-      // 					lassoTool.activateSelection(event);
+      // 			{
+      // 				id: "lasso-tool",
+      // 				group: "tools",
+      // 				className: "bpmn-icon-lasso-tool",
+      // 				title: translate("Activate the lasso tool"),
+      // 				action: {
+      // 					click: (event) => {
+      // 						lassoTool.activateSelection(event);
+      // 					},
       // 				},
       // 			},
-      // 		},
-      // 		{
-      // 			id: "space-tool",
-      // 			group: "tools",
-      // 			className: "bpmn-icon-space-tool",
-      // 			title: translate("Activate the create/remove space tool"),
-      // 			action: {
-      // 				click: (event) => {
-      // 					spaceTool.activateSelection(event);
+      // 			{
+      // 				id: "space-tool",
+      // 				group: "tools",
+      // 				className: "bpmn-icon-space-tool",
+      // 				title: translate("Activate the create/remove space tool"),
+      // 				action: {
+      // 					click: (event) => {
+      // 						spaceTool.activateSelection(event);
+      // 					},
       // 				},
       // 			},
-      // 		},
-      // 		{
-      // 			id: "global-connect-tool",
-      // 			group: "tools",
-      // 			className: "bpmn-icon-connection-multi",
-      // 			title: translate("Activate the global connect tool"),
-      // 			action: {
-      // 				click: (event) => {
-      // 					globalConnect.toggle(event);
+      // 			{
+      // 				id: "global-connect-tool",
+      // 				group: "tools",
+      // 				className: "bpmn-icon-connection-multi",
+      // 				title: translate("Activate the global connect tool"),
+      // 				action: {
+      // 					click: (event) => {
+      // 						globalConnect.toggle(event);
+      // 					},
       // 				},
       // 			},
-      // 		},
-      // 	],
+      // 		],
       // },
       // {
       // 	title: translate("FlowGateway"),

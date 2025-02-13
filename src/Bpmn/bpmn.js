@@ -138,16 +138,14 @@ class Bpmn extends PureComponent {
       position: 'relative'
     };
     return (
-      <div>
-        <div className={'container'} style={styleObj}>
-          <div className={'canvas'} id='canvas' />
-          <div>
-            <div
-              className={`properties-panel-parent`}
-              id='properties-panel'
-              // style={{height: '100%'}}
-            />
-          </div>
+      <div className={'container'} style={styleObj}>
+        <div className={'canvas'} id='canvas' />
+        <div>
+          <div
+            className={`properties-panel-parent`}
+            id='properties-panel'
+            // style={{height: '100%'}}
+          />
         </div>
       </div>
     );
