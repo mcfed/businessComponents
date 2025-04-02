@@ -170,6 +170,11 @@ export default class CustomContextPad {
           'bpmn-icon-end-event-none',
           translate('Append EndEvent')
         ),
+        // 'append.gateway': appendAction(
+        //   'bpmn:ExclusiveGateway',
+        //   'bpmn-icon-gateway-none',
+        //   translate('Append Gateway')
+        // ),
         'append.gateway': {
           group: 'model',
           className: 'bpmn-icon-gateway-none',
