@@ -1,6 +1,6 @@
-import React, {useEffect, useRef, useCallback} from 'react';
-import {BaseForm, Panel} from '@mcfed/components';
-import {Button, message} from 'antd';
+import React, {useEffect, useRef} from 'react';
+import {BaseForm} from '@mcfed/components';
+import {Button} from 'antd';
 import elementHelper from 'bpmn-js-properties-panel/lib/helper/ElementHelper';
 
 export function Properites(props) {

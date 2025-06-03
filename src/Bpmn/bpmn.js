@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react';
-import {notification} from 'antd';
 import BpmnModeler from './Modeler';
 import BpmnViewer from 'bpmn-js/lib/Viewer';
 // 引入flowable的节点文件

@@ -1,7 +1,6 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import {FormItem} from '@mcfed/components';
-import {Input, Select} from 'antd';
-import 'antd/dist/antd.css';
+import {Select} from 'antd';
 
 export function SimpleProperite(props) {
   return (

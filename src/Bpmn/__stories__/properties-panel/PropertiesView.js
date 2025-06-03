@@ -1,6 +1,4 @@
-import {is} from 'bpmn-js/lib/util/ModelUtil';
 import {Select, Input} from 'antd';
-import 'antd/dist/antd.css';
 import React, {Component} from 'react';
 import './PropertiesView.css';
 const Option = Select.Option;
