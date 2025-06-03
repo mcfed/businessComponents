@@ -8,18 +8,18 @@
  */
 .djs-container {
   --blue-base-65: @primary-color;
-  --blue-base-65-opacity-30: fade(@primary-color, 30%);
-  --blue-darken-48: darken(@primary-color, 48%);
-  --blue-darken-55: darken(@primary-color, 55%);
-  --blue-lighten-82: lighten(@primary-color, 82%);
+  --blue-base-65-opacity-30: @primary-color-outline;
+  --blue-darken-48: @primary-color-active;
+  --blue-darken-55: @primary-color-hover;
+  --blue-lighten-82: ~'var(--@{ant-prefix}-primary-color-deprecated-f-12)';
 
-  --orange-base-60: @warning-color;
-  --orange-base-60-opacity-30: fade(@warning-color, 30%);
-  --orange-base-60-opacity-50: fade(@warning-color, 50%);
-  --orange-lighten-85: lighten(@warning-color, 85%);
+  --orange-base-60: #ffa533;
+  --orange-base-60-opacity-30: rgba(255, 165, 51, 0.3);
+  --orange-base-60-opacity-50: rgba(255, 165, 51, 0.5);
+  --orange-lighten-85: #ffddb3;
 
   --red-base-62: @error-color;
-  --red-base-62-opacity-10: fade(@error-color, 10%);
+  --red-base-62-opacity-10: @warning-color-outline;
 
   --silver-darken-94: #efefef;
 
