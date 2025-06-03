@@ -13,7 +13,7 @@ module.exports = {
     }
   },
   notify: false,
-  setupTestFrameworkScriptFile: '<rootDir>/setupTests.js',
+  // setupTestFrameworkScriptFile: '<rootDir>/setupTests.js',
   coveragePathIgnorePatterns: [
     //该路径下的测试，忽略在测试覆盖率上
     'build',
@@ -38,13 +38,13 @@ module.exports = {
     //与测试无关的资源文件同意mock 掉，这样在import 的时候就不会真的引入这些文件
     '^import?': '<rootDir>/build/jestImportMock.js',
     // '.*\\.(js|jax)$': '<rootDir>/__mocks__/react.js',
-    '.*\\.(css|less|scss)$': '<rootDir>/__mocks__/styleMock.js',
+    '.*\\.(css|less|scss|sass)$': 'jest-css-modules',
     '\\.(css|less|gif|jpg|jpeg|png)$': '<rootDir>/build/jestStyleMock.js'
   },
-  //  setupFiles: ['<rootDir>/test/setup.js'], //给每个测试文件添加额外的配置
+  setupFiles: ['./jest.setup.js'],
+  setupFilesAfterEnv: ['./jest.setupAfterEnv.js'],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
-    '^.+\\.jsx?$': 'babel-jest'
+    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest'
   },
   transformIgnorePatterns: [
     //测试过程不改变满足配置的文件
